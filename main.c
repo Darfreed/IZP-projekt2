@@ -78,7 +78,6 @@ bool Transitive(char r[5][2][30], int r_count){
 }
 
 bool Function(char r[5][2][30], int r_count){
-    bool function = true;
     for(int i = 0; i<r_count; i++){
         for(int j = i+1; j<r_count; j++){
             if(strcmp(r[i][0],r[j][0])==0){

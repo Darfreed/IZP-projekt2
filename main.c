@@ -189,7 +189,7 @@ int main()
 {
     char A[5][30] = {"a", "bc", "d", "e"};
     int A_len = 4;
-    char operand[] = "reflexive";
+    char operand[20];
     char relation_count=4;
     char relation[5][2][30] ={{"bc","bc"},{"d","d"},{"a","a"},{"e","e"}};
     char set1[4][30] = {"bc","d","a","e"};
@@ -198,43 +198,49 @@ int main()
     int set2_count = 4;
 
     char operands[10][20] = {"reflexive","symmetric","antisymmetric","transitive","function","domain","codomain","injective","surjective","bijective"};
-    int i=0;
-    while(i<10&&(strcmp(operands[i],operand))){
-        i++;
-    }
-    switch(i+1){
-        case 1:
-            printf("%s\n",Reflexive(A,A_len,relation,relation_count)?"true":"false");
-            break;
-        case 2:
-            printf("%s\n",Symmetric(relation,relation_count)?"true":"false");
-            break;
-        case 3:
-            printf("%s\n",Antisymmetric(relation,relation_count)?"true":"false");
-            break;
-        case 4:
-            printf("%s\n",Transitive(relation,relation_count)?"true":"false");
-            break;
-        case 5:
-            printf("%s\n",Function(relation,relation_count)?"true":"false");
-            break;
-        case 6:
-            Domain(relation,relation_count);
-            break;
-        case 7:
-            Codomain(relation,relation_count);
-            break;
-        case 8:
-            printf("%s\n",Injective(relation,relation_count,set1,set1_count,set2,set2_count)?"true":"false");
-            break;
-        case 9:
-            printf("%s\n",Surjective(relation,relation_count,set1,set1_count,set2,set2_count)?"true":"false");
-            break;
-        case 10:
-            printf("%s\n",Bijective(relation,relation_count,set1,set1_count,set2,set2_count)?"true":"false");
-            break;
-        default:
-            printf("neco se pokazilo");
+    for(int j=0;j<10;j++){
+        for(int k = 0; operands[j][k]!='\0';k++){
+            operand[k] = operands[j][k];
+            operand[k+1] = '\0';
+        }
+        int i=0;
+        while(i<10&&(strcmp(operands[i],operand))){
+            i++;
+        }
+        switch(i+1){
+            case 1:
+                printf("%s\n",Reflexive(A,A_len,relation,relation_count)?"true":"false");
+                break;
+            case 2:
+                printf("%s\n",Symmetric(relation,relation_count)?"true":"false");
+                break;
+            case 3:
+                printf("%s\n",Antisymmetric(relation,relation_count)?"true":"false");
+                break;
+            case 4:
+                printf("%s\n",Transitive(relation,relation_count)?"true":"false");
+                break;
+            case 5:
+                printf("%s\n",Function(relation,relation_count)?"true":"false");
+                break;
+            case 6:
+                Domain(relation,relation_count);
+                break;
+            case 7:
+                Codomain(relation,relation_count);
+                break;
+            case 8:
+                printf("%s\n",Injective(relation,relation_count,set1,set1_count,set2,set2_count)?"true":"false");
+                break;
+            case 9:
+                printf("%s\n",Surjective(relation,relation_count,set1,set1_count,set2,set2_count)?"true":"false");
+                break;
+            case 10:
+                printf("%s\n",Bijective(relation,relation_count,set1,set1_count,set2,set2_count)?"true":"false");
+                break;
+            default:
+                printf("neco se pokazilo");
+        }
     }
     return 0;
 }

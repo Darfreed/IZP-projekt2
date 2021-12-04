@@ -145,45 +145,41 @@ bool Injective(char r[4][2][30], int r_count,char a[3][30],int a_count,char b[3]
             }
             injective_for_b = 0;
         }
-        printf("%d",all_injective);
         if(all_injective==a_count)
             return true;
     }
     return false;
 }
 
-bool Surjective(char relation[4][2][30], int relation_count,char set1[3][30],int set1_count,char set2[3][30],int set2_count){
-    int injective_for_b = 0;
-    int all_injective = 0;
+bool Surjective(char r[4][2][30], int r_count,char a[4][30],int a_count,char b[3][30],int b_count){
+    int a_surjective = 0;
+    bool b_surjective = false;
     if(Function(r,r_count)){
         for(int i = 0;i<b_count;i++){
             for(int j = 0;j<r_count;j++){
                 if(strcmp(b[i],r[j][1])==0){
+                    b_surjective = true;
                     for(int k = 0;k<a_count;k++){
                         if(strcmp(a[k],r[j][0])==0){
-                            injective_for_b++;
-                            all_injective ++;
+                            a_surjective++;
                         }
                     }
                 }
             }
-            if(injective_for_b>1){
+            if(!b_surjective){
                 return false;
             }
-            injective_for_b = 0;
+            b_surjective = false;
         }
-        printf("%d",all_injective);
-        if(all_injective==a_count)
+        if((a_surjective==a_count))
             return true;
     }
     return false;
 }
 
-bool Bijective(char relation[4][2][30], int relation_count,char set1[3][30],int set1_count,char set2[3][30],int set2_count){
-    if(Function(relation,relation_count)){
-        for(int i = 0;i<relation_count;i++){
-
-        }
+bool Bijective(char r[4][2][30], int r_count,char a[4][30],int a_count,char b[3][30],int b_count){
+    if((Function(r,r_count))&&(Injective(r,r_count,a,a_count,b,b_count))&&(Surjective(r,r_count,a,a_count,b,b_count))){
+        return true;
     }
     return false;
 }
@@ -193,11 +189,11 @@ int main()
 {
     char A[5][30] = {"a", "bc", "d", "e"};
     int A_len = 4;
-    char operand[] = "injective";
+    char operand[] = "surjective";
     char relation_count=4;
-    char relation[5][2][30] ={{"bc","d"},{"d","e"},{"a","a"},{"e","d"},{"e","e"}};
-    char set1[3][30] = {"bc","d","a"};
-    int set1_count = 3;
+    char relation[5][2][30] ={{"bc","e"},{"d","d"},{"a","a"},{"e","a"}};
+    char set1[4][30] = {"bc","d","a","e"};
+    int set1_count = 4;
     char set2[4][30] = {"e","d","a","bc"};
     int set2_count = 4;
 

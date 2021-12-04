@@ -3,11 +3,11 @@
 #include <stdbool.h>
 #include <string.h>
 
-bool Reflexive(char A[5][30],int A_len, char relation[5][2][30], int relation_count){
+bool Reflexive(char u[5][30],int u_len, char r[5][2][30], int r_count){
     bool reflexive = false;
-    for(int i = 0; A_len>i;i++){
-        for(int j = 0; relation_count>j;j++){
-            if((strcmp(A[i],relation[j][0])==0)&&(strcmp(A[i],relation[j][1])==0)){
+    for(int i = 0; u_len>i;i++){
+        for(int j = 0; r_count>j;j++){
+            if((strcmp(u[i],r[j][0])==0)&&(strcmp(u[i],r[j][1])==0)){
                 reflexive = true;
                 break;
             }
@@ -20,11 +20,11 @@ bool Reflexive(char A[5][30],int A_len, char relation[5][2][30], int relation_co
     return true;
 }
 
-bool Symmetric(char relation[5][2][30], int relation_count){
+bool Symmetric(char r[5][2][30], int r_count){
     bool symmetric = false;
-    for(int i = 0; i < relation_count;i++){
-        for(int j = 0; j < relation_count;j++){
-            if((strcmp(relation[i][0],relation[j][1])==0)&&(strcmp(relation[i][1],relation[j][0])==0)){
+    for(int i = 0; i < r_count;i++){
+        for(int j = 0; j < r_count;j++){
+            if((strcmp(r[i][0],r[j][1])==0)&&(strcmp(r[i][1],r[j][0])==0)){
                 symmetric = true;
                 break;
             }
@@ -37,12 +37,12 @@ bool Symmetric(char relation[5][2][30], int relation_count){
     return true;
 }
 
-bool Antisymmetric(char relation[5][2][30], int relation_count){
+bool Antisymmetric(char r[5][2][30], int r_count){
     bool antisymmetric = true;
-    for(int i = 0; i < relation_count;i++){
-        if(strcmp(relation[i][0],relation[i][1])!=0){
-            for(int j = 0; j < relation_count;j++){
-                if((strcmp(relation[i][0],relation[j][1])==0)&&(strcmp(relation[i][1],relation[j][0])==0)){
+    for(int i = 0; i < r_count;i++){
+        if(strcmp(r[i][0],r[i][1])!=0){
+            for(int j = 0; j < r_count;j++){
+                if((strcmp(r[i][0],r[j][1])==0)&&(strcmp(r[i][1],r[j][0])==0)){
                     antisymmetric = false;
                     break;
                 }
@@ -56,13 +56,13 @@ bool Antisymmetric(char relation[5][2][30], int relation_count){
     return true;
 }
 
-bool Transitive(char relation[5][2][30], int relation_count){
+bool Transitive(char r[5][2][30], int r_count){
     bool transitive = true;
-    for(int i = 0; i<relation_count; i++){
-        for(int j = i+1; j<relation_count; j++){
-            if(strcmp(relation[i][1],relation[j][0])==0){
-                for(int k = 0; k<relation_count; k++){
-                    if((strcmp(relation[i][0],relation[k][0])==0)&&(strcmp(relation[j][1],relation[k][1])==0)){
+    for(int i = 0; i<r_count; i++){
+        for(int j = i+1; j<r_count; j++){
+            if(strcmp(r[i][1],r[j][0])==0){
+                for(int k = 0; k<r_count; k++){
+                    if((strcmp(r[i][0],r[k][0])==0)&&(strcmp(r[j][1],r[k][1])==0)){
                         transitive = true;
                         break;
                     }
@@ -77,11 +77,11 @@ bool Transitive(char relation[5][2][30], int relation_count){
     return true;
 }
 
-bool Function(char relation[5][2][30], int relation_count){
+bool Function(char r[5][2][30], int r_count){
     bool function = true;
-    for(int i = 0; i<relation_count; i++){
-        for(int j = i+1; j<relation_count; j++){
-            if(strcmp(relation[i][0],relation[j][0])==0){
+    for(int i = 0; i<r_count; i++){
+        for(int j = i+1; j<r_count; j++){
+            if(strcmp(r[i][0],r[j][0])==0){
                 return false;
             }
         }
@@ -89,36 +89,36 @@ bool Function(char relation[5][2][30], int relation_count){
     return true;
 }
 
-void Domain(char relation[5][2][30], int relation_count){
+void Domain(char r[5][2][30], int r_count){
     printf("S");
     bool unique = true;
-    for(int i=0;i<relation_count;i++){
+    for(int i=0;i<r_count;i++){
         for(int j=0;j<i;j++){
-            if(strcmp(relation[i][0],relation[j][0])==0){
+            if(strcmp(r[i][0],r[j][0])==0){
                 unique = false;
                 break;
             }
         }
         if(unique){
-            printf(" %s", relation[i][0]);
+            printf(" %s", r[i][0]);
         }
         unique = true;
     }
     printf("\n");
 }
 
-void Codomain(char relation[5][2][30], int relation_count){
+void Codomain(char r[5][2][30], int r_count){
     printf("S");
     bool unique = true;
-    for(int i=0;i<relation_count;i++){
+    for(int i=0;i<r_count;i++){
         for(int j=0;j<i;j++){
-            if(strcmp(relation[i][1],relation[j][1])==0){
+            if(strcmp(r[i][1],r[j][1])==0){
                 unique = false;
                 break;
             }
         }
         if(unique){
-            printf(" %s", relation[i][1]);
+            printf(" %s", r[i][1]);
         }
         unique = true;
     }
@@ -189,7 +189,7 @@ int main()
 {
     char A[5][30] = {"a", "bc", "d", "e"};
     int A_len = 4;
-    char operand[] = "codomain";
+    char operand[] = "reflexive";
     char relation_count=4;
     char relation[5][2][30] ={{"bc","bc"},{"d","d"},{"a","a"},{"e","e"}};
     char set1[4][30] = {"bc","d","a","e"};

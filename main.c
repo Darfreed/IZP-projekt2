@@ -178,7 +178,7 @@ bool Surjective(char r[4][2][30], int r_count,char a[4][30],int a_count,char b[3
 }
 
 bool Bijective(char r[4][2][30], int r_count,char a[4][30],int a_count,char b[3][30],int b_count){
-    if((Function(r,r_count))&&(Injective(r,r_count,a,a_count,b,b_count))&&(Surjective(r,r_count,a,a_count,b,b_count))){
+    if(Injective(r,r_count,a,a_count,b,b_count)&&Surjective(r,r_count,a,a_count,b,b_count)){
         return true;
     }
     return false;
@@ -189,9 +189,9 @@ int main()
 {
     char A[5][30] = {"a", "bc", "d", "e"};
     int A_len = 4;
-    char operand[] = "surjective";
+    char operand[] = "codomain";
     char relation_count=4;
-    char relation[5][2][30] ={{"bc","e"},{"d","d"},{"a","a"},{"e","a"}};
+    char relation[5][2][30] ={{"bc","bc"},{"d","d"},{"a","a"},{"e","e"}};
     char set1[4][30] = {"bc","d","a","e"};
     int set1_count = 4;
     char set2[4][30] = {"e","d","a","bc"};
@@ -204,36 +204,34 @@ int main()
     }
     switch(i+1){
         case 1:
-            printf("reflexive: %s\n",Reflexive(A,A_len,relation,relation_count)?"true":"false");
+            printf("%s\n",Reflexive(A,A_len,relation,relation_count)?"true":"false");
             break;
         case 2:
-            printf("symmetric: %s\n",Symmetric(relation,relation_count)?"true":"false");
+            printf("%s\n",Symmetric(relation,relation_count)?"true":"false");
             break;
         case 3:
-            printf("antisymmetric: %s\n",Antisymmetric(relation,relation_count)?"true":"false");
+            printf("%s\n",Antisymmetric(relation,relation_count)?"true":"false");
             break;
         case 4:
-            printf("transitive: %s\n",Transitive(relation,relation_count)?"true":"false");
+            printf("%s\n",Transitive(relation,relation_count)?"true":"false");
             break;
         case 5:
-            printf("function: %s\n",Function(relation,relation_count)?"true":"false");
+            printf("%s\n",Function(relation,relation_count)?"true":"false");
             break;
         case 6:
-            printf("domain: ");
             Domain(relation,relation_count);
             break;
         case 7:
-            printf("codomain: ");
             Codomain(relation,relation_count);
             break;
         case 8:
-            printf("injective: %s\n",Injective(relation,relation_count,set1,set1_count,set2,set2_count)?"true":"false");
+            printf("%s\n",Injective(relation,relation_count,set1,set1_count,set2,set2_count)?"true":"false");
             break;
         case 9:
-            printf("surjective: %s\n",Surjective(relation,relation_count,set1,set1_count,set2,set2_count)?"true":"false");
+            printf("%s\n",Surjective(relation,relation_count,set1,set1_count,set2,set2_count)?"true":"false");
             break;
         case 10:
-            printf("bijective: %s\n",Bijective(relation,relation_count,set1,set1_count,set2,set2_count)?"true":"false");
+            printf("%s\n",Bijective(relation,relation_count,set1,set1_count,set2,set2_count)?"true":"false");
             break;
         default:
             printf("neco se pokazilo");

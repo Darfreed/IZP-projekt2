@@ -233,13 +233,8 @@ bool Transitive(char ***r, int r_count)
     return true;
 }
 
-<<<<<<< HEAD
 bool Function(char ***r, int r_count)
 {
-    bool function = true;
-=======
-bool Function(char r[5][2][30], int r_count){
->>>>>>> 13d511ae77ccf16deed27b65f375d10c1ce3771e
     for(int i = 0; i<r_count; i++){
         for(int j = i+1; j<r_count; j++){
             if(strcmp(r[i][0],r[j][0])==0){
